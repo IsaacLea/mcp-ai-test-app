@@ -1,0 +1,14 @@
+services:
+  test-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+      
+    ports:
+      - "5432:5432"
